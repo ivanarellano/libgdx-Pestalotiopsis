@@ -2,10 +2,12 @@ package com.ivanarellano.game.pm.screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL10;
+import com.ivanarellano.game.pm.Board;
 import com.ivanarellano.game.pm.PmGame;
 import com.ivanarellano.game.pm.PmScreen;
 
 public class GameScreen extends PmScreen {
+	Board board = new Board("745216803");
 
 	public GameScreen(PmGame game) {
 		super(game);

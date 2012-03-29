@@ -5,8 +5,12 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
 public class Tile extends Actor {
-	TextureRegion region = new TextureRegion(Assets.atlas.findRegion("tile"));
+	TextureRegion region = Assets.atlas.findRegion("tile");
 	String number = new String();
+	
+	public Tile(String number) {
+		this.number = number;
+	}
 	
 	@Override
 	public void draw(SpriteBatch batch, float parentAlpha) {
