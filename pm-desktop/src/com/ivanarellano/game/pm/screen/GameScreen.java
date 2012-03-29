@@ -1,5 +1,7 @@
 package com.ivanarellano.game.pm.screen;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL10;
 import com.ivanarellano.game.pm.PmGame;
 import com.ivanarellano.game.pm.PmScreen;
 
@@ -7,12 +9,14 @@ public class GameScreen extends PmScreen {
 
 	public GameScreen(PmGame game) {
 		super(game);
+		Gdx.gl.glClearColor(game.bgColor.r, game.bgColor.g, game.bgColor.b, game.bgColor.a);
 	}
 
 	@Override
 	public void render(float delta) {
-        //game.stage.act(delta);
-        //game.stage.draw();
+		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
+        game.stage.act(delta);
+        game.stage.draw();
 	}
 
 	@Override
@@ -36,7 +40,8 @@ public class GameScreen extends PmScreen {
 	}
 
 	@Override
-	public void dispose() {		
+	public void dispose() {
+		game.stage.dispose();
 	}
 
 }

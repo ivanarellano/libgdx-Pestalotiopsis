@@ -11,8 +11,8 @@ public class IntroScreen extends PmScreen {
 
 	@Override
 	public void render(float delta) {
-        //game.stage.act(delta);
-        //game.stage.draw();
+        game.stage.act(delta);
+        game.stage.draw();
 	}
 
 	@Override
@@ -36,7 +36,8 @@ public class IntroScreen extends PmScreen {
 	}
 
 	@Override
-	public void dispose() {		
+	public void dispose() {
+		game.stage.dispose();
 	}
 
 }
