@@ -21,6 +21,9 @@ public class PmGame extends Game implements ApplicationListener {
 		
 		Gdx.graphics.setVSync(true);
 		
+		Gdx.input.setInputProcessor(stage);
+		Gdx.input.setCatchBackKey(true);
+		
 		stage = new Stage((float) SCREEN_WIDTH, (float) SCREEN_HEIGHT, false);
 		
 		screenStack.add(new GameScreen(this));
