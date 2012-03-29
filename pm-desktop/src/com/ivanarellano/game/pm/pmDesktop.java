@@ -4,7 +4,7 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.tools.imagepacker.TexturePacker;
 import com.badlogic.gdx.tools.imagepacker.TexturePacker.Settings;
 
-public class pmDesktop {
+public class PmDesktop {
 	public static void main(String args[]) {
         Settings settings = new Settings();
         settings.padding = 6;
@@ -15,7 +15,7 @@ public class pmDesktop {
         settings.pot = true;
         TexturePacker.process(settings, "assets", "data");
         
-		new LwjglApplication(new pmGame(), "Pestalotiopsis Microspora",
-				pmGame.SCREEN_WIDTH, pmGame.SCREEN_HEIGHT, false);
+		new LwjglApplication(new PmGame(), "Pestalotiopsis Microspora",
+				PmGame.SCREEN_WIDTH, PmGame.SCREEN_HEIGHT, false);
 	}
 }

@@ -5,11 +5,11 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
-public class pmGame extends Game implements ApplicationListener {
+public class PmGame extends Game implements ApplicationListener {
 	public static final int SCREEN_WIDTH = 1280;
 	public static final int SCREEN_HEIGHT = 720;
 	
-	public static Stage stage = new Stage(SCREEN_WIDTH, SCREEN_HEIGHT, false);
+	public Stage stage;
 	public ScreenStack screenStack = new ScreenStack(this);
 
 	@Override
@@ -17,6 +17,8 @@ public class pmGame extends Game implements ApplicationListener {
 		Gdx.app.log("libGdx ver", Integer.toString(Gdx.app.getVersion()));
 		
 		Gdx.graphics.setVSync(true);
+		
+		stage = new Stage((float) SCREEN_WIDTH, (float) SCREEN_HEIGHT, false);
 	}
 
 	@Override

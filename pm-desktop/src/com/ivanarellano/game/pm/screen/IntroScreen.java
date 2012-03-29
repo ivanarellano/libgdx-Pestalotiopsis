@@ -1,11 +1,18 @@
 package com.ivanarellano.game.pm.screen;
 
-import com.badlogic.gdx.Screen;
+import com.ivanarellano.game.pm.PmGame;
+import com.ivanarellano.game.pm.PmScreen;
 
-public class Intro implements Screen {
+public class IntroScreen extends PmScreen {
+
+	public IntroScreen(PmGame game) {
+		super(game);
+	}
 
 	@Override
-	public void render(float delta) {		
+	public void render(float delta) {
+        //game.stage.act(delta);
+        //game.stage.draw();
 	}
 
 	@Override
