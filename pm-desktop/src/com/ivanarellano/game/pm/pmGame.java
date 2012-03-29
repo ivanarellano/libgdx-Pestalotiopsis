@@ -24,6 +24,8 @@ public class PmGame extends Game implements ApplicationListener {
 		Gdx.input.setInputProcessor(stage);
 		Gdx.input.setCatchBackKey(true);
 		
+		Assets.create();
+		
 		stage = new Stage((float) SCREEN_WIDTH, (float) SCREEN_HEIGHT, false);
 		
 		screenStack.add(new GameScreen(this));
@@ -32,6 +34,7 @@ public class PmGame extends Game implements ApplicationListener {
 	@Override
 	public void dispose() {
 		super.dispose();
+		Assets.manager.dispose();
 	}
 
 	@Override
@@ -41,6 +44,8 @@ public class PmGame extends Game implements ApplicationListener {
 
 	@Override
 	public void resume() {
+		Assets.manager.update();
+		Assets.manager.finishLoading();
 		super.resume();
 	}
 
