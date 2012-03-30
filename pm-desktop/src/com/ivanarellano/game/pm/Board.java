@@ -1,14 +1,10 @@
 package com.ivanarellano.game.pm;
 
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-
-
 public class Board {
-	static final int ROWS = 3;
-	static final int COLS = 3;
-	Image grassBoard = new Image(Assets.atlas.findRegion("grassboard"));
+	public static final int ROWS = 3;
+	public static final int COLS = 3;
 	
-	Tile[][] tiles = new Tile[ROWS][COLS];
+	public Tile[][] tiles = new Tile[ROWS][COLS];
 	int totalMoves;
 	String goal = new String("123456780");
 	
