@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.ivanarellano.game.pm.Assets;
+import com.ivanarellano.game.pm.Assets.Colors;
 import com.ivanarellano.game.pm.Board;
 import com.ivanarellano.game.pm.PmGame;
 import com.ivanarellano.game.pm.PmScreen;
@@ -17,7 +18,7 @@ public class GameScreen extends PmScreen {
 
 	public GameScreen(PmGame game) {
 		super(game);
-		Gdx.gl.glClearColor(game.bgColor.r, game.bgColor.g, game.bgColor.b, game.bgColor.a);
+		Gdx.gl.glClearColor(Colors.DARK_NAVY.r, Colors.DARK_NAVY.g, Colors.DARK_NAVY.b, Colors.DARK_NAVY.a);
 
 		initStage();
 	}
@@ -25,15 +26,21 @@ public class GameScreen extends PmScreen {
 	public void update(float delta) {
 		game.stage.act(delta);
 		
+		/*
 		if (Gdx.input.getAccelerometerY() <= -7.0f) {
-			Gdx.app.log("accelY", "going left");
+			board.slideTile(Direction.LEFT);
+			
 		} else if (Gdx.input.getAccelerometerY() >= 7.0f) {
-			Gdx.app.log("accelY", "going right");
+			board.slideTile(Direction.RIGHT);
+			
 		} else if (Gdx.input.getAccelerometerX() >= 9.5f) {
-			Gdx.app.log("accelX", "going down");
+			board.slideTile(Direction.DOWN);
+			
 		} else if (Gdx.input.getAccelerometerX() <= -7.5f) {
-			Gdx.app.log("accelX", "going up");
+			board.slideTile(Direction.UP);
+			
 		}
+		*/
 	}
 
 	@Override

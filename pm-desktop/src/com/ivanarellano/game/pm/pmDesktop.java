@@ -14,7 +14,7 @@ public class PmDesktop {
         settings.incremental = true;
         settings.pot = true;
         TexturePacker.process(settings, "assets", "data");
-        
+                
 		new LwjglApplication(new PmGame(), "Pestalotiopsis Microspora",
 				PmGame.SCREEN_WIDTH, PmGame.SCREEN_HEIGHT, false);
 	}

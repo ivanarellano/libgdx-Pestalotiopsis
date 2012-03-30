@@ -5,8 +5,8 @@ public class Board {
 	public static final int COLS = 3;
 	
 	public Tile[][] tiles = new Tile[ROWS][COLS];
-	int totalMoves;
-	String goal = new String("123456780");
+	public int totalMoves;
+	public String goal = new String("123456780");
 	
 	public Board(String boardInit) {
 		int curStringPos = 0;
@@ -19,7 +19,7 @@ public class Board {
 		}
 	}
 	
-	boolean isTileInPlace(Tile tile) {
+	private boolean isTileInPlace(Tile tile) {
 		boolean inPlace = false;
 		int currentPlace = 0;
 		
@@ -39,7 +39,7 @@ public class Board {
 		return inPlace;
 	}
 	
-	boolean hasWon() {
+	public boolean hasWon() {
 		boolean hasWon = false;
 		
 		for (int row = 0; row < ROWS; row++) {
@@ -54,7 +54,7 @@ public class Board {
 		return hasWon;
 	}
 	
-	void slideTile(Direction direction) {
+	public void slideTile(Direction direction) {
 		Tile blankTile = null;
 		int btRow = 0;
 		int btCol = 0;
@@ -85,11 +85,11 @@ public class Board {
 		}
 	}
 	
-	boolean checkBounds(int row, int col) {
+	private boolean checkBounds(int row, int col) {
 		return (row < ROWS) && (row >= 0) && (col < ROWS) && (col >= 0);
 	}
 	
-	void switchTiles(Tile src, Tile dst) {
+	private void switchTiles(Tile src, Tile dst) {
 		Tile temp = src;
 		src = dst;
 		dst = temp;

@@ -3,7 +3,6 @@ package com.ivanarellano.game.pm;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.ivanarellano.game.pm.screen.GameScreen;
 
@@ -13,7 +12,6 @@ public class PmGame extends Game implements ApplicationListener {
 	
 	public Stage stage;
 	public ScreenStack screenStack = new ScreenStack(this);
-	public Color bgColor = new Color(53.0f/255.0f, 58.0f/255.0f, 61.0f/255.0f, 1.0f);
 
 	@Override
 	public void create() {
