@@ -28,7 +28,7 @@ public class Assets {
 
 	public static class Fonts {
 		public static final BitmapFont TEACHERS_PET_SS_NUM = TrueTypeFontFactory
-				.createBitmapFont(Gdx.files.internal("assets/teacpss.ttf"),
+				.createBitmapFont(Gdx.files.internal("data/teacpss.ttf"),
 						NUMBER_CHARACTERS, 12.5f, 7.0f, 1.3f,
 						PmGame.SCREEN_WIDTH, PmGame.SCREEN_HEIGHT);
 	}
