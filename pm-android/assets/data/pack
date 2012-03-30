@@ -1,0 +1,122 @@
+
+assets1.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+grassboard
+  rotate: false
+  xy: 0, 0
+  size: 720, 708
+  orig: 720, 708
+  offset: 0, 0
+  index: -1
+smallgrass
+  rotate: false
+  xy: 726, 0
+  size: 91, 62
+  orig: 91, 62
+  offset: 0, 0
+  index: -1
+smalldeadgrass
+  rotate: false
+  xy: 823, 0
+  size: 91, 62
+  orig: 91, 62
+  offset: 0, 0
+  index: -1
+
+assets2.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+logointro
+  rotate: false
+  xy: 0, 0
+  size: 950, 59
+  orig: 950, 59
+  offset: 0, 0
+  index: -1
+logogameover
+  rotate: false
+  xy: 0, 65
+  size: 259, 73
+  orig: 259, 73
+  offset: 0, 0
+  index: -1
+newlandgameover
+  rotate: false
+  xy: 0, 144
+  size: 211, 27
+  orig: 211, 27
+  offset: 0, 0
+  index: -1
+tile
+  rotate: false
+  xy: 0, 177
+  size: 202, 202
+  orig: 202, 202
+  offset: 0, 0
+  index: -1
+moves
+  rotate: false
+  xy: 0, 385
+  size: 71, 14
+  orig: 71, 14
+  offset: 0, 0
+  index: -1
+quitgameover
+  rotate: false
+  xy: 956, 0
+  size: 67, 39
+  orig: 67, 39
+  offset: 0, 0
+  index: -1
+scoregameover
+  rotate: false
+  xy: 956, 45
+  size: 64, 14
+  orig: 64, 14
+  offset: 0, 0
+  index: -1
+fungitop
+  rotate: false
+  xy: 0, 405
+  size: 53, 44
+  orig: 53, 44
+  offset: 0, 0
+  index: -1
+fungibtm
+  rotate: false
+  xy: 0, 455
+  size: 53, 44
+  orig: 53, 44
+  offset: 0, 0
+  index: -1
+fungiright
+  rotate: false
+  xy: 208, 177
+  size: 44, 53
+  orig: 44, 53
+  offset: 0, 0
+  index: -1
+fungileft
+  rotate: false
+  xy: 208, 236
+  size: 44, 53
+  orig: 44, 53
+  offset: 0, 0
+  index: -1
+milkjug
+  rotate: false
+  xy: 208, 295
+  size: 38, 53
+  orig: 38, 53
+  offset: 0, 0
+  index: -1
+mushroom
+  rotate: false
+  xy: 77, 385
+  size: 35, 55
+  orig: 35, 55
+  offset: 0, 0
+  index: -1

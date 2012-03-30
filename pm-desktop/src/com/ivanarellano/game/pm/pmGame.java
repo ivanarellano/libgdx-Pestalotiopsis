@@ -8,7 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.ivanarellano.game.pm.screen.GameScreen;
 
 public class PmGame extends Game implements ApplicationListener {
-	public static final int SCREEN_WIDTH = 1280;
+	public static final int SCREEN_WIDTH = 1196; //1280
 	public static final int SCREEN_HEIGHT = 720;
 	
 	public Stage stage;

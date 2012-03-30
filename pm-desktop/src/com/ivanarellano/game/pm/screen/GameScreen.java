@@ -22,45 +22,62 @@ public class GameScreen extends PmScreen {
 		initStage();
 	}
 
+	public void update(float delta) {
+		game.stage.act(delta);
+		
+		if (Gdx.input.getAccelerometerY() <= -7.0f) {
+			Gdx.app.log("accelY", "going left");
+		} else if (Gdx.input.getAccelerometerY() >= 7.0f) {
+			Gdx.app.log("accelY", "going right");
+		} else if (Gdx.input.getAccelerometerX() >= 9.5f) {
+			Gdx.app.log("accelX", "going down");
+		} else if (Gdx.input.getAccelerometerX() <= -7.5f) {
+			Gdx.app.log("accelX", "going up");
+		}
+	}
+
 	@Override
 	public void render(float delta) {
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
-        game.stage.act(delta);
-        game.stage.draw();
+
+		update(delta);
+
+		game.stage.draw();
 	}
 
 	@Override
-	public void resize(int width, int height) {		
+	public void resize(int width, int height) {
 	}
 
 	@Override
-	public void show() {		
+	public void show() {
 	}
 
 	@Override
-	public void hide() {		
+	public void hide() {
 	}
 
 	@Override
-	public void pause() {		
+	public void pause() {
 	}
 
 	@Override
-	public void resume() {		
+	public void resume() {
 	}
 
 	@Override
 	public void dispose() {
 		game.stage.dispose();
 	}
-	
+
 	void initStage() {
 		// add some grass
 		groupBoard.addActor(grassBoard);
-		
+
 		// place board in the middle
-		groupBoard.x = PmGame.SCREEN_WIDTH/2 - grassBoard.width/2;
-		
+		groupBoard.x = PmGame.SCREEN_WIDTH / 2 - grassBoard.width / 2;
+		groupBoard.y = PmGame.SCREEN_HEIGHT / 2 - grassBoard.height / 2;
+
 		// add and arrange tiles
 		int XOffset = 45;
 		int YOffset = 465;
@@ -68,24 +85,24 @@ public class GameScreen extends PmScreen {
 			for (int col = 0; col < Board.COLS; col++) {
 				board.tiles[row][col].x = XOffset;
 				board.tiles[row][col].y = YOffset;
-				
+
 				groupTiles.addActor(board.tiles[row][col]);
-								
+
 				if (col >= 2)
 					XOffset = 45;
 				else
 					XOffset += 215;
-				
+
 				if (board.tiles[row][col].number.contentEquals("0"))
 					board.tiles[row][col].visible = false;
 			}
-			
+
 			YOffset -= 215;
 		}
-		
+
 		// layer tiles on top of grass
 		groupBoard.addActor(groupTiles);
-		
+
 		// place it all on the stage
 		game.stage.addActor(groupBoard);
 	}
