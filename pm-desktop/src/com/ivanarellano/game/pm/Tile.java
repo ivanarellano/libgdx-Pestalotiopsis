@@ -6,7 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 
 public class Tile extends Actor {
 	TextureRegion region = Assets.atlas.findRegion("tile");
-	String number = new String();
+	public String number = new String();
 	
 	public Tile(String number) {
 		this.number = number;

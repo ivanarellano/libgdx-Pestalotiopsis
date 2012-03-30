@@ -58,9 +58,12 @@ public class GameScreen extends PmScreen {
 		// add some grass
 		groupBoard.addActor(grassBoard);
 		
-		// add tiles
-		int XOffset = 0;
-		int YOffset = 0;
+		// place board in the middle
+		groupBoard.x = PmGame.SCREEN_WIDTH/2 - grassBoard.width/2;
+		
+		// add and arrange tiles
+		int XOffset = 45;
+		int YOffset = 465;
 		for (int row = 0; row < Board.ROWS; row++) {
 			for (int col = 0; col < Board.COLS; col++) {
 				board.tiles[row][col].x = XOffset;
@@ -69,12 +72,15 @@ public class GameScreen extends PmScreen {
 				groupTiles.addActor(board.tiles[row][col]);
 								
 				if (col >= 2)
-					XOffset = 0;
+					XOffset = 45;
 				else
-					XOffset += 50;
+					XOffset += 215;
+				
+				if (board.tiles[row][col].number.contentEquals("0"))
+					board.tiles[row][col].visible = false;
 			}
 			
-			YOffset += 50;
+			YOffset -= 215;
 		}
 		
 		// layer tiles on top of grass
