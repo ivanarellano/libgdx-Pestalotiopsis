@@ -1,6 +1,7 @@
 package com.ivanarellano.game.pm.screen;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Group;
@@ -34,7 +35,7 @@ public class GameScreen extends PmScreen {
 		
 		if (state == GameState.READY) {
 			
-			if (Gdx.input.getAccelerometerY() <= -7.0f) {
+			if (Gdx.input.isKeyPressed(Keys.LEFT) || Gdx.input.getAccelerometerY() <= -7.0f) {
 				if (board.checkBounds(Direction.LEFT)) {
 					state = GameState.ACTING;
 					
@@ -49,7 +50,7 @@ public class GameScreen extends PmScreen {
 					
 					board.tiles[board.btRow][board.btCol+1].action(moveTo);
 				}
-			} else if (Gdx.input.getAccelerometerY() >= 7.0f) {
+			} else if (Gdx.input.isKeyPressed(Keys.RIGHT) || Gdx.input.getAccelerometerY() >= 7.0f) {
 				if (board.checkBounds(Direction.RIGHT)) {
 					state = GameState.ACTING;
 					
@@ -65,7 +66,7 @@ public class GameScreen extends PmScreen {
 					board.tiles[board.btRow][board.btCol-1].action(moveTo);
 				}
 			
-			} else if (Gdx.input.getAccelerometerX() >= 8.0f) {
+			} else if (Gdx.input.isKeyPressed(Keys.DOWN) || Gdx.input.getAccelerometerX() >= 8.0f) {
 				if (board.checkBounds(Direction.DOWN)) {
 					state = GameState.ACTING;
 					
@@ -81,7 +82,7 @@ public class GameScreen extends PmScreen {
 					board.tiles[board.btRow-1][board.btCol].action(moveTo);
 				}
 			
-			} else if (Gdx.input.getAccelerometerX() <= -7.0f) {
+			} else if (Gdx.input.isKeyPressed(Keys.UP) || Gdx.input.getAccelerometerX() <= -6.5f) {
 				if (board.checkBounds(Direction.UP)) {
 					state = GameState.ACTING;
 					
