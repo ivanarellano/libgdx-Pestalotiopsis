@@ -22,6 +22,7 @@ public class GameScreen extends PmScreen {
 	Group groupBoard = new Group("board");
 	Group groupTiles = new Group("tiles");
 	public Image grassBoard = new Image(Assets.atlas.findRegion("grassboard"));
+	public int totalMoves = 0;
 
 	public GameScreen(PmGame game) {
 		super(game);
@@ -45,6 +46,7 @@ public class GameScreen extends PmScreen {
 								public void completed(Action action) {
 									board.slideTile(Direction.LEFT);
 									state = GameState.READY;
+									totalMoves++;
 								}
 							});
 					
@@ -60,6 +62,7 @@ public class GameScreen extends PmScreen {
 								public void completed(Action action) {
 									board.slideTile(Direction.RIGHT);
 									state = GameState.READY;
+									totalMoves++;
 								}
 							});
 
@@ -76,6 +79,7 @@ public class GameScreen extends PmScreen {
 								public void completed(Action action) {
 									board.slideTile(Direction.DOWN);
 									state = GameState.READY;
+									totalMoves++;
 								}
 							});
 					
@@ -92,6 +96,7 @@ public class GameScreen extends PmScreen {
 								public void completed(Action action) {
 									board.slideTile(Direction.UP);
 									state = GameState.READY;
+									totalMoves++;
 								}
 							});
 					

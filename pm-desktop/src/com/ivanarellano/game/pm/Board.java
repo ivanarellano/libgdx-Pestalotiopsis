@@ -5,7 +5,6 @@ public class Board {
 	public static final int COLS = 3;
 	
 	public Tile[][] tiles = new Tile[ROWS][COLS];
-	public int totalMoves;
 	public String goal = new String("123456780");
 	
 	public int btRow = 0;
