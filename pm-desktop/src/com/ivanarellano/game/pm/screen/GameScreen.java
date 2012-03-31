@@ -17,7 +17,7 @@ import com.ivanarellano.game.pm.PmScreen;
 
 public class GameScreen extends PmScreen {
 	GameState state = GameState.READY;
-	Board board = new Board("745216803");
+	Board board = new Board("123658740");
 	Group groupBoard = new Group("board");
 	Group groupTiles = new Group("tiles");
 	public Image grassBoard = new Image(Assets.atlas.findRegion("grassboard"));
