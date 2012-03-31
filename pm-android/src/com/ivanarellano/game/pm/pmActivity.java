@@ -9,6 +9,6 @@ public class pmActivity extends AndroidApplication {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initialize(new pmGame(), false);
+        initialize(new PmGame(), false);
     }
 }
