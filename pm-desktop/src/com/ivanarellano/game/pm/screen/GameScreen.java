@@ -40,7 +40,7 @@ public class GameScreen extends PmScreen {
 				if (board.checkBounds(Direction.LEFT)) {
 					state = GameState.ACTING;
 					
-					Action moveTo = MoveBy.$(-212.0f, 0.0f, 0.6f).setCompletionListener(
+					Action moveTo = MoveBy.$(-215.0f, 0.0f, 0.6f).setCompletionListener(
 							new OnActionCompleted() {
 								@Override
 								public void completed(Action action) {
@@ -56,7 +56,7 @@ public class GameScreen extends PmScreen {
 				if (board.checkBounds(Direction.RIGHT)) {
 					state = GameState.ACTING;
 					
-					Action moveTo = MoveBy.$(212.0f, 0.0f, 0.6f).setCompletionListener(
+					Action moveTo = MoveBy.$(215.0f, 0.0f, 0.6f).setCompletionListener(
 							new OnActionCompleted() {
 								@Override
 								public void completed(Action action) {
@@ -73,7 +73,7 @@ public class GameScreen extends PmScreen {
 				if (board.checkBounds(Direction.DOWN)) {
 					state = GameState.ACTING;
 					
-					Action moveTo = MoveBy.$(0.0f, -212.0f, 0.6f).setCompletionListener(
+					Action moveTo = MoveBy.$(0.0f, -215.0f, 0.6f).setCompletionListener(
 							new OnActionCompleted() {
 								@Override
 								public void completed(Action action) {
@@ -90,7 +90,7 @@ public class GameScreen extends PmScreen {
 				if (board.checkBounds(Direction.UP)) {
 					state = GameState.ACTING;
 					
-					Action moveTo = MoveBy.$(0.0f, 212.0f, 0.60f).setCompletionListener(
+					Action moveTo = MoveBy.$(0.0f, 215.0f, 0.6f).setCompletionListener(
 							new OnActionCompleted() {
 								@Override
 								public void completed(Action action) {
