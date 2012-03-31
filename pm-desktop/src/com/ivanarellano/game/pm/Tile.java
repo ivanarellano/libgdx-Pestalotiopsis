@@ -18,7 +18,7 @@ public class Tile extends Group {
 		label.y = -35;
 		
 		addActor(texture);
-		addActor(label);
+		addActor(label);		
 	}
 
 }

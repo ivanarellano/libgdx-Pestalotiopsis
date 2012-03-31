@@ -7,10 +7,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.ivanarellano.game.pm.Assets;
 import com.ivanarellano.game.pm.Assets.Colors;
 import com.ivanarellano.game.pm.Board;
+import com.ivanarellano.game.pm.Direction;
+import com.ivanarellano.game.pm.GameState;
 import com.ivanarellano.game.pm.PmGame;
 import com.ivanarellano.game.pm.PmScreen;
 
 public class GameScreen extends PmScreen {
+	GameState state = GameState.READY;
 	Board board = new Board("745216803");
 	Group groupBoard = new Group("board");
 	Group groupTiles = new Group("tiles");
@@ -26,21 +29,30 @@ public class GameScreen extends PmScreen {
 	public void update(float delta) {
 		game.stage.act(delta);
 		
-		/*
-		if (Gdx.input.getAccelerometerY() <= -7.0f) {
-			board.slideTile(Direction.LEFT);
+		if (state == GameState.READY) {
 			
-		} else if (Gdx.input.getAccelerometerY() >= 7.0f) {
-			board.slideTile(Direction.RIGHT);
+			if (Gdx.input.getAccelerometerY() <= -7.0f) {
+				if (board.slideTile(Direction.LEFT)) {
+					Gdx.app.log("update", "went l");
+				}
+			} else if (Gdx.input.getAccelerometerY() >= 7.0f) {
+				if (board.slideTile(Direction.RIGHT)) {
+					Gdx.app.log("update", "went r");
+				}
 			
-		} else if (Gdx.input.getAccelerometerX() >= 9.5f) {
-			board.slideTile(Direction.DOWN);
+			} else if (Gdx.input.getAccelerometerX() >= 9.5f) {
+				if (board.slideTile(Direction.DOWN)) {
+					Gdx.app.log("update", "went down");
+				}
 			
-		} else if (Gdx.input.getAccelerometerX() <= -7.5f) {
-			board.slideTile(Direction.UP);
+			} else if (Gdx.input.getAccelerometerX() <= -7.5f) {
+				if (board.slideTile(Direction.UP)) {
+					Gdx.app.log("update", "went up");
+				}
+			
+			}
 			
 		}
-		*/
 	}
 
 	@Override
