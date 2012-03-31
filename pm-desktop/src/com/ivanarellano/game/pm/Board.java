@@ -1,5 +1,6 @@
 package com.ivanarellano.game.pm;
 
+
 public class Board {
 	public static final int ROWS = 3;
 	public static final int COLS = 3;
@@ -40,8 +41,8 @@ public class Board {
 			}
 		}
 		
-		int correctPlace = goal.indexOf(Integer.parseInt(tile.number));
-		
+		int correctPlace = goal.indexOf(tile.number);
+				
 		if (currentPlace == correctPlace)
 			inPlace = true;
 		
@@ -49,18 +50,15 @@ public class Board {
 	}
 	
 	public boolean hasWon() {
-		boolean hasWon = false;
 		
 		for (int row = 0; row < ROWS; row++) {
 			for (int col = 0; col < COLS; col++) {
-				if (isTileInPlace(tiles[row][col]))
-					hasWon = true;
-				else
-					hasWon = false;
+				if (!isTileInPlace(tiles[row][col]))
+					return false;
 			}
 		}
 		
-		return hasWon;
+		return true;
 	}
 	
 	public void slideTile(Direction direction) {

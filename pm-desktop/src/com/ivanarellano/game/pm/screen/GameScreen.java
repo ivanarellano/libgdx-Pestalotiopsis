@@ -29,6 +29,9 @@ public class GameScreen extends PmScreen {
 		Gdx.gl.glClearColor(Colors.DARK_NAVY.r, Colors.DARK_NAVY.g, Colors.DARK_NAVY.b, Colors.DARK_NAVY.a);
 
 		initStage();
+		
+		if (board.hasWon())
+			state = GameState.OVER;
 	}
 
 	public void update(float delta) {
@@ -45,7 +48,7 @@ public class GameScreen extends PmScreen {
 								@Override
 								public void completed(Action action) {
 									board.slideTile(Direction.LEFT);
-									state = GameState.READY;
+									state = (board.hasWon()) ? GameState.OVER : GameState.READY;
 									totalMoves++;
 								}
 							});
@@ -61,7 +64,7 @@ public class GameScreen extends PmScreen {
 								@Override
 								public void completed(Action action) {
 									board.slideTile(Direction.RIGHT);
-									state = GameState.READY;
+									state = (board.hasWon()) ? GameState.OVER : GameState.READY;
 									totalMoves++;
 								}
 							});
@@ -78,7 +81,7 @@ public class GameScreen extends PmScreen {
 								@Override
 								public void completed(Action action) {
 									board.slideTile(Direction.DOWN);
-									state = GameState.READY;
+									state = (board.hasWon()) ? GameState.OVER : GameState.READY;
 									totalMoves++;
 								}
 							});
@@ -95,7 +98,7 @@ public class GameScreen extends PmScreen {
 								@Override
 								public void completed(Action action) {
 									board.slideTile(Direction.UP);
-									state = GameState.READY;
+									state = (board.hasWon()) ? GameState.OVER : GameState.READY;
 									totalMoves++;
 								}
 							});
@@ -104,6 +107,8 @@ public class GameScreen extends PmScreen {
 				}
 			
 			}
+			
+		} else if (state == GameState.OVER) {
 			
 		}
 	}
