@@ -1,6 +1,5 @@
 package com.ivanarellano.game.pm;
 
-
 public class Board {
 	public static final int ROWS = 3;
 	public static final int COLS = 3;
@@ -9,8 +8,8 @@ public class Board {
 	public int totalMoves;
 	public String goal = new String("123456780");
 	
-	int btRow = 0;
-	int btCol = 0;
+	public int btRow = 0;
+	public int btCol = 0;
 	
 	public Board(String boardInit) {
 		int curStringPos = 0;
@@ -65,56 +64,61 @@ public class Board {
 		return hasWon;
 	}
 	
-	public boolean slideTile(Direction direction) {
-		boolean hasSlid = false;
-		
-		switch(direction) {
+	public void slideTile(Direction direction) {
+		switch (direction) {
 			case DOWN:
-				if (checkBounds(btRow-1, btCol)) {
-					switchBlankTile(btRow-1, btCol);
-					hasSlid = true;
-				}
+				switchBlankTile(btRow-1, btCol);
 				break;
 			case LEFT:
-				if (checkBounds(btRow, btCol+1)) {
-					switchBlankTile(btRow, btCol+1);
-					hasSlid = true;
-				}
+				switchBlankTile(btRow, btCol+1);
 				break;
 			case UP:
-				if (checkBounds(btRow+1, btCol)) {
-					switchBlankTile(btRow+1, btCol);
-					hasSlid = true;
-				}
+				switchBlankTile(btRow+1, btCol);
 				break;
 			case RIGHT:
-				if (checkBounds(btRow, btCol-1)) {
-					switchBlankTile(btRow, btCol-1);
-					hasSlid = true;
-				}
+				switchBlankTile(btRow, btCol-1);
+				break;
+		}		
+	}
+	
+	public boolean checkBounds(Direction direction) {
+		int row = 0;
+		int col = 0;
+		
+		switch (direction) {
+			case DOWN:
+				row = btRow-1;
+				col = btCol;
+				break;
+			case LEFT:
+				row = btRow;
+				col = btCol+1;
+				break;
+			case UP:
+				row = btRow+1;
+				col = btCol;
+				break;
+			case RIGHT:
+				row = btRow;
+				col = btCol-1;
 				break;
 		}
 		
-		return hasSlid;
-	}
-	
-	private boolean checkBounds(int row, int col) {
 		return (row < ROWS) && (row >= 0) && (col < ROWS) && (col >= 0);
 	}
 	
 	private void switchBlankTile(int dstRow, int dstCol) {
+		Tile tempBlank = tiles[btRow][btCol];
 		int tempRow = btRow;
 		int tempCol = btCol;
 		
-		tiles[btRow][btCol].number = tiles[dstRow][dstCol].number;
+		tiles[btRow][btCol] = tiles[dstRow][dstCol];
 		btRow = dstRow;
 		btCol = dstCol;
 		
-		tiles[dstRow][dstCol].number = "0";
-		tiles[dstRow][dstCol].visible = false;
+		tiles[dstRow][dstCol] = tempBlank;
 		
 		tiles[tempRow][tempCol].label.setText(tiles[tempRow][tempCol].number);
-		tiles[tempRow][tempCol].visible = true;
 	}
 
 }

@@ -2,7 +2,10 @@ package com.ivanarellano.game.pm.screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL10;
+import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.OnActionCompleted;
+import com.badlogic.gdx.scenes.scene2d.actions.MoveBy;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.ivanarellano.game.pm.Assets;
 import com.ivanarellano.game.pm.Assets.Colors;
@@ -32,22 +35,66 @@ public class GameScreen extends PmScreen {
 		if (state == GameState.READY) {
 			
 			if (Gdx.input.getAccelerometerY() <= -7.0f) {
-				if (board.slideTile(Direction.LEFT)) {
-					Gdx.app.log("update", "went l");
+				if (board.checkBounds(Direction.LEFT)) {
+					state = GameState.ACTING;
+					
+					Action moveTo = MoveBy.$(-212.0f, 0.0f, 0.6f).setCompletionListener(
+							new OnActionCompleted() {
+								@Override
+								public void completed(Action action) {
+									board.slideTile(Direction.LEFT);
+									state = GameState.READY;
+								}
+							});
+					
+					board.tiles[board.btRow][board.btCol+1].action(moveTo);
 				}
 			} else if (Gdx.input.getAccelerometerY() >= 7.0f) {
-				if (board.slideTile(Direction.RIGHT)) {
-					Gdx.app.log("update", "went r");
+				if (board.checkBounds(Direction.RIGHT)) {
+					state = GameState.ACTING;
+					
+					Action moveTo = MoveBy.$(212.0f, 0.0f, 0.6f).setCompletionListener(
+							new OnActionCompleted() {
+								@Override
+								public void completed(Action action) {
+									board.slideTile(Direction.RIGHT);
+									state = GameState.READY;
+								}
+							});
+
+					board.tiles[board.btRow][board.btCol-1].action(moveTo);
 				}
 			
-			} else if (Gdx.input.getAccelerometerX() >= 9.5f) {
-				if (board.slideTile(Direction.DOWN)) {
-					Gdx.app.log("update", "went down");
+			} else if (Gdx.input.getAccelerometerX() >= 8.0f) {
+				if (board.checkBounds(Direction.DOWN)) {
+					state = GameState.ACTING;
+					
+					Action moveTo = MoveBy.$(0.0f, -212.0f, 0.6f).setCompletionListener(
+							new OnActionCompleted() {
+								@Override
+								public void completed(Action action) {
+									board.slideTile(Direction.DOWN);
+									state = GameState.READY;
+								}
+							});
+					
+					board.tiles[board.btRow-1][board.btCol].action(moveTo);
 				}
 			
-			} else if (Gdx.input.getAccelerometerX() <= -7.5f) {
-				if (board.slideTile(Direction.UP)) {
-					Gdx.app.log("update", "went up");
+			} else if (Gdx.input.getAccelerometerX() <= -7.0f) {
+				if (board.checkBounds(Direction.UP)) {
+					state = GameState.ACTING;
+					
+					Action moveTo = MoveBy.$(0.0f, 212.0f, 0.60f).setCompletionListener(
+							new OnActionCompleted() {
+								@Override
+								public void completed(Action action) {
+									board.slideTile(Direction.UP);
+									state = GameState.READY;
+								}
+							});
+					
+					board.tiles[board.btRow+1][board.btCol].action(moveTo);
 				}
 			
 			}
