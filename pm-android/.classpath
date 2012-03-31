@@ -7,5 +7,6 @@
 	<classpathentry exported="true" kind="lib" path="libs/gdx-backend-android.jar"/>
 	<classpathentry exported="true" kind="lib" path="/pm-desktop/libs/gdx.jar" sourcepath="/pm-desktop/libs/gdx-sources.jar"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/pm-desktop"/>
+	<classpathentry exported="true" kind="lib" path="/pm-desktop/libs/gdx-stb-truetype.jar" sourcepath="/pm-desktop/libs/gdx-stb-truetype-sources.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
