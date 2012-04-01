@@ -187,5 +187,12 @@ public class GameScreen extends PmScreen {
 		// place it all on the stage
 		game.stage.addActor(groupBoard);
 	}
+	
+	public void resetBoard() {
+		board.reset();
+		groupTiles.clear();
+		groupBoard.clear();
+		initBoardGraphics();
+	}
 
 }
