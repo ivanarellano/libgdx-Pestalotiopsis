@@ -18,13 +18,16 @@ import com.ivanarellano.game.pm.PmGame;
 import com.ivanarellano.game.pm.PmScreen;
 
 public class GameScreen extends PmScreen {
-	GameState state = GameState.READY;
-	//Board board = new Board("123658740");
-	Board board = new Board("123456780");
+	public GameState state = GameState.READY;
+	public Board board = new Board("123658740");
+	
+	/* easy */
+	//public Board board = new Board("123456708");
+	
 	Group groupBoard = new Group("board");
 	Group groupTiles = new Group("tiles");
 	Image grassBoard = new Image(Assets.atlas.findRegion("grassboard"));
-	GameOverUI gameOverUI = new GameOverUI(this.game);
+	GameOverUI gameOverUI = new GameOverUI(this);
 	
 	int totalMoves = 0;
 
@@ -32,7 +35,7 @@ public class GameScreen extends PmScreen {
 		super(game);
 		Gdx.gl.glClearColor(Colors.DARK_NAVY.r, Colors.DARK_NAVY.g, Colors.DARK_NAVY.b, Colors.DARK_NAVY.a);
 
-		initStage();
+		initBoardGraphics();
 		
 		if (board.hasWon())
 			state = GameState.OVER;
@@ -46,13 +49,13 @@ public class GameScreen extends PmScreen {
 			if (Gdx.input.isKeyPressed(Keys.LEFT) || Gdx.input.getAccelerometerY() <= -7.0f) {
 				if (board.checkBounds(Direction.LEFT)) {
 					state = GameState.ACTING;
-					
+
 					Action moveTo = MoveBy.$(-215.0f, 0.0f, 0.6f).setCompletionListener(
 							new OnActionCompleted() {
 								@Override
 								public void completed(Action action) {
+									state = GameState.READY;
 									board.slideTile(Direction.LEFT);
-									state = (board.hasWon()) ? GameState.OVER : GameState.READY;
 									totalMoves++;
 								}
 							});
@@ -62,13 +65,13 @@ public class GameScreen extends PmScreen {
 			} else if (Gdx.input.isKeyPressed(Keys.RIGHT) || Gdx.input.getAccelerometerY() >= 7.0f) {
 				if (board.checkBounds(Direction.RIGHT)) {
 					state = GameState.ACTING;
-					
+
 					Action moveTo = MoveBy.$(215.0f, 0.0f, 0.6f).setCompletionListener(
 							new OnActionCompleted() {
 								@Override
 								public void completed(Action action) {
+									state = GameState.READY;
 									board.slideTile(Direction.RIGHT);
-									state = (board.hasWon()) ? GameState.OVER : GameState.READY;
 									totalMoves++;
 								}
 							});
@@ -84,8 +87,8 @@ public class GameScreen extends PmScreen {
 							new OnActionCompleted() {
 								@Override
 								public void completed(Action action) {
+									state = GameState.READY;
 									board.slideTile(Direction.DOWN);
-									state = (board.hasWon()) ? GameState.OVER : GameState.READY;
 									totalMoves++;
 								}
 							});
@@ -101,8 +104,8 @@ public class GameScreen extends PmScreen {
 							new OnActionCompleted() {
 								@Override
 								public void completed(Action action) {
+									state = GameState.READY;
 									board.slideTile(Direction.UP);
-									state = (board.hasWon()) ? GameState.OVER : GameState.READY;
 									totalMoves++;
 								}
 							});
@@ -112,9 +115,13 @@ public class GameScreen extends PmScreen {
 			
 			}
 			
-		} else if (state == GameState.OVER) {
-			gameOverUI.init();
+			if (board.hasWon()) {
+				state = GameState.OVER;
+				gameOverUI.init();
+			}
+			
 		}
+
 	}
 
 	@Override
@@ -151,7 +158,7 @@ public class GameScreen extends PmScreen {
 		game.stage.dispose();
 	}
 
-	void initStage() {
+	void initBoardGraphics() {
 		// add some grass
 		groupBoard.addActor(grassBoard);
 
