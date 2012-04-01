@@ -8,27 +8,41 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.OnActionCompleted;
 import com.badlogic.gdx.scenes.scene2d.actions.MoveBy;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.ivanarellano.game.pm.Assets;
 import com.ivanarellano.game.pm.Assets.Colors;
+import com.ivanarellano.game.pm.Assets.LabelStyles;
 import com.ivanarellano.game.pm.Board;
 import com.ivanarellano.game.pm.Direction;
+import com.ivanarellano.game.pm.GameOverUI;
 import com.ivanarellano.game.pm.GameState;
 import com.ivanarellano.game.pm.PmGame;
 import com.ivanarellano.game.pm.PmScreen;
 
 public class GameScreen extends PmScreen {
-	GameState state = GameState.READY;
-	Board board = new Board("123658740");
+	public GameState state = GameState.READY;
+	public Board board = new Board("123658740");
+	
+	/* easy */
+	//public Board board = new Board("123456708");
+	
 	Group groupBoard = new Group("board");
 	Group groupTiles = new Group("tiles");
-	public Image grassBoard = new Image(Assets.atlas.findRegion("grassboard"));
-	public int totalMoves = 0;
+	Group groupMoves = new Group("groupmoves");
+	
+	Image grassBoard = new Image(Assets.atlas.findRegion("grassboard"));
+	Image movesText = new Image(Assets.atlas.findRegion("moves"));
+	Label movesNumber = new Label("0", LabelStyles.MOVES_COUNTER);
+	
+	GameOverUI gameOverUI = new GameOverUI(this);
+	
+	int totalMoves = 0;
 
 	public GameScreen(PmGame game) {
 		super(game);
 		Gdx.gl.glClearColor(Colors.DARK_NAVY.r, Colors.DARK_NAVY.g, Colors.DARK_NAVY.b, Colors.DARK_NAVY.a);
 
-		initStage();
+		initBoardGraphics();
 		
 		if (board.hasWon())
 			state = GameState.OVER;
@@ -42,14 +56,14 @@ public class GameScreen extends PmScreen {
 			if (Gdx.input.isKeyPressed(Keys.LEFT) || Gdx.input.getAccelerometerY() <= -7.0f) {
 				if (board.checkBounds(Direction.LEFT)) {
 					state = GameState.ACTING;
-					
+
 					Action moveTo = MoveBy.$(-215.0f, 0.0f, 0.6f).setCompletionListener(
 							new OnActionCompleted() {
 								@Override
 								public void completed(Action action) {
+									state = GameState.READY;
 									board.slideTile(Direction.LEFT);
-									state = (board.hasWon()) ? GameState.OVER : GameState.READY;
-									totalMoves++;
+									updateMovesCounter();
 								}
 							});
 					
@@ -58,14 +72,14 @@ public class GameScreen extends PmScreen {
 			} else if (Gdx.input.isKeyPressed(Keys.RIGHT) || Gdx.input.getAccelerometerY() >= 7.0f) {
 				if (board.checkBounds(Direction.RIGHT)) {
 					state = GameState.ACTING;
-					
+
 					Action moveTo = MoveBy.$(215.0f, 0.0f, 0.6f).setCompletionListener(
 							new OnActionCompleted() {
 								@Override
 								public void completed(Action action) {
+									state = GameState.READY;
 									board.slideTile(Direction.RIGHT);
-									state = (board.hasWon()) ? GameState.OVER : GameState.READY;
-									totalMoves++;
+									updateMovesCounter();
 								}
 							});
 
@@ -80,9 +94,9 @@ public class GameScreen extends PmScreen {
 							new OnActionCompleted() {
 								@Override
 								public void completed(Action action) {
+									state = GameState.READY;
 									board.slideTile(Direction.DOWN);
-									state = (board.hasWon()) ? GameState.OVER : GameState.READY;
-									totalMoves++;
+									updateMovesCounter();
 								}
 							});
 					
@@ -97,9 +111,9 @@ public class GameScreen extends PmScreen {
 							new OnActionCompleted() {
 								@Override
 								public void completed(Action action) {
+									state = GameState.READY;
 									board.slideTile(Direction.UP);
-									state = (board.hasWon()) ? GameState.OVER : GameState.READY;
-									totalMoves++;
+									updateMovesCounter();
 								}
 							});
 					
@@ -108,9 +122,13 @@ public class GameScreen extends PmScreen {
 			
 			}
 			
-		} else if (state == GameState.OVER) {
+			if (board.hasWon()) {
+				state = GameState.OVER;
+				gameOverUI.init();
+			}
 			
 		}
+
 	}
 
 	@Override
@@ -147,10 +165,7 @@ public class GameScreen extends PmScreen {
 		game.stage.dispose();
 	}
 
-	void initStage() {
-		// add some grass
-		groupBoard.addActor(grassBoard);
-
+	void initBoardGraphics() {
 		// place board in the middle
 		groupBoard.x = PmGame.SCREEN_WIDTH / 2 - grassBoard.width / 2;
 		groupBoard.y = PmGame.SCREEN_HEIGHT / 2 - grassBoard.height / 2;
@@ -176,12 +191,42 @@ public class GameScreen extends PmScreen {
 
 			YOffset -= 215;
 		}
+		
+		groupMoves.width = 82;
+		groupMoves.x = PmGame.SCREEN_WIDTH - groupMoves.width - 16;
+		groupMoves.y = 20;
+		
+		movesNumber.x = groupMoves.width/2 - movesNumber.getTextBounds().width/2 + 3;
+		movesNumber.y = -70;
+		
+		movesText.x = 6;
+		
+		// add some grass
+		groupBoard.addActor(grassBoard);
 
 		// layer tiles on top of grass
 		groupBoard.addActor(groupTiles);
 
-		// place it all on the stage
-		game.stage.addActor(groupBoard);
+		// place board on the mid stage layer
+		game.groupMidGameScreen.addActor(groupBoard);
+		
+		groupMoves.addActor(movesNumber);
+		groupMoves.addActor(movesText);
+		game.groupTopGameScreen.addActor(groupMoves);
+	}
+	
+	public void resetBoard() {
+		totalMoves = 0;
+		movesNumber.setText(Integer.toString(totalMoves));
+		board.reset();
+		groupTiles.clear();
+		groupBoard.clear();
+		initBoardGraphics();
 	}
 
+	public void updateMovesCounter() {
+		totalMoves++;
+		movesNumber.setText(Integer.toString(totalMoves));
+		movesNumber.x = groupMoves.width/2 - movesNumber.getTextBounds().width/2 + 3;
+	}
 }

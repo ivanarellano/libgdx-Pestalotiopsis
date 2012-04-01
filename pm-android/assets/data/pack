@@ -36,30 +36,37 @@ logointro
   orig: 950, 59
   offset: 0, 0
   index: -1
-logogameover
+tintoverlay
   rotate: false
   xy: 0, 65
+  size: 480, 320
+  orig: 480, 320
+  offset: 0, 0
+  index: -1
+logogameover
+  rotate: false
+  xy: 0, 391
   size: 259, 73
   orig: 259, 73
   offset: 0, 0
   index: -1
 newlandgameover
   rotate: false
-  xy: 0, 144
+  xy: 0, 470
   size: 211, 27
   orig: 211, 27
   offset: 0, 0
   index: -1
 tile
   rotate: false
-  xy: 0, 177
+  xy: 486, 65
   size: 202, 202
   orig: 202, 202
   offset: 0, 0
   index: -1
 moves
   rotate: false
-  xy: 0, 385
+  xy: 265, 391
   size: 71, 14
   orig: 71, 14
   offset: 0, 0
@@ -80,42 +87,42 @@ scoregameover
   index: -1
 fungitop
   rotate: false
-  xy: 0, 405
+  xy: 265, 411
   size: 53, 44
   orig: 53, 44
   offset: 0, 0
   index: -1
 fungibtm
   rotate: false
-  xy: 0, 455
+  xy: 265, 461
   size: 53, 44
   orig: 53, 44
   offset: 0, 0
   index: -1
 fungiright
   rotate: false
-  xy: 208, 177
+  xy: 342, 391
   size: 44, 53
   orig: 44, 53
   offset: 0, 0
   index: -1
 fungileft
   rotate: false
-  xy: 208, 236
+  xy: 342, 450
   size: 44, 53
   orig: 44, 53
   offset: 0, 0
   index: -1
 milkjug
   rotate: false
-  xy: 208, 295
+  xy: 392, 391
   size: 38, 53
   orig: 38, 53
   offset: 0, 0
   index: -1
 mushroom
   rotate: false
-  xy: 77, 385
+  xy: 392, 450
   size: 35, 55
   orig: 35, 55
   offset: 0, 0

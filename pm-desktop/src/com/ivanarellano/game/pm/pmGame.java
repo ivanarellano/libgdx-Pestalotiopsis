@@ -3,6 +3,7 @@ package com.ivanarellano.game.pm;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.ivanarellano.game.pm.screen.GameScreen;
 
@@ -11,6 +12,8 @@ public class PmGame extends Game implements ApplicationListener {
 	public static final int SCREEN_HEIGHT = 720;
 	
 	public Stage stage;
+	public Group groupTopGameScreen = new Group("topgamescreen");
+	public Group groupMidGameScreen = new Group("midgamescreen");
 	public ScreenStack screenStack = new ScreenStack(this);
 
 	@Override
@@ -18,14 +21,20 @@ public class PmGame extends Game implements ApplicationListener {
 		Gdx.app.log("libGdx ver", Integer.toString(Gdx.app.getVersion()));
 		
 		Gdx.graphics.setVSync(true);
-		Gdx.input.setInputProcessor(stage);
 		Gdx.input.setCatchBackKey(true);
 		
 		Assets.create();
 		
-		stage = new Stage((float) SCREEN_WIDTH, (float) SCREEN_HEIGHT, false);
+		stage = new Stage(SCREEN_WIDTH, SCREEN_HEIGHT, false);
+		
+		groupMidGameScreen.width = groupTopGameScreen.width = SCREEN_WIDTH;
+		groupMidGameScreen.height = groupTopGameScreen.height = SCREEN_HEIGHT;
+		stage.addActor(groupMidGameScreen);
+		stage.addActor(groupTopGameScreen);
 		
 		screenStack.add(new GameScreen(this));
+		
+		Gdx.input.setInputProcessor(stage);
 	}
 
 	@Override
