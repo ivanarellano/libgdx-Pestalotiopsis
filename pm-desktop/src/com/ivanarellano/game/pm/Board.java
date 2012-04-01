@@ -1,22 +1,29 @@
 package com.ivanarellano.game.pm;
 
-
 public class Board {
 	public static final int ROWS = 3;
 	public static final int COLS = 3;
 	
 	public Tile[][] tiles = new Tile[ROWS][COLS];
-	public String goal = new String("123456780");
+	
+	String startConfig = new String();
+	String goal = new String("123456780");
 	
 	public int btRow = 0;
 	public int btCol = 0;
 	
 	public Board(String boardInit) {
+		startConfig = boardInit;
+		
+		reset();
+	}
+	
+	public void reset() {
 		int curStringPos = 0;
 
 		for (int row = 0; row < ROWS; row++) {
 			for (int col = 0; col < COLS; col++) {
-				tiles[row][col] = new Tile(Character.toString(boardInit.charAt(curStringPos)));
+				tiles[row][col] = new Tile(Character.toString(startConfig.charAt(curStringPos)));
 				curStringPos++;
 				
 				// find blank tile and store it	
@@ -26,6 +33,7 @@ public class Board {
 				}
 			}
 		}
+		
 		
 	}
 	
