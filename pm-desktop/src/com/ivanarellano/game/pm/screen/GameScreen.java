@@ -12,17 +12,21 @@ import com.ivanarellano.game.pm.Assets;
 import com.ivanarellano.game.pm.Assets.Colors;
 import com.ivanarellano.game.pm.Board;
 import com.ivanarellano.game.pm.Direction;
+import com.ivanarellano.game.pm.GameOverUI;
 import com.ivanarellano.game.pm.GameState;
 import com.ivanarellano.game.pm.PmGame;
 import com.ivanarellano.game.pm.PmScreen;
 
 public class GameScreen extends PmScreen {
 	GameState state = GameState.READY;
-	Board board = new Board("123658740");
+	//Board board = new Board("123658740");
+	Board board = new Board("123456780");
 	Group groupBoard = new Group("board");
 	Group groupTiles = new Group("tiles");
-	public Image grassBoard = new Image(Assets.atlas.findRegion("grassboard"));
-	public int totalMoves = 0;
+	Image grassBoard = new Image(Assets.atlas.findRegion("grassboard"));
+	GameOverUI gameOverUI = new GameOverUI(this.game);
+	
+	int totalMoves = 0;
 
 	public GameScreen(PmGame game) {
 		super(game);
@@ -109,7 +113,7 @@ public class GameScreen extends PmScreen {
 			}
 			
 		} else if (state == GameState.OVER) {
-			
+			gameOverUI.init();
 		}
 	}
 
