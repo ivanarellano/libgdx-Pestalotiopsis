@@ -18,7 +18,6 @@ public class PmGame extends Game implements ApplicationListener {
 		Gdx.app.log("libGdx ver", Integer.toString(Gdx.app.getVersion()));
 		
 		Gdx.graphics.setVSync(true);
-		Gdx.input.setInputProcessor(stage);
 		Gdx.input.setCatchBackKey(true);
 		
 		Assets.create();
@@ -26,6 +25,8 @@ public class PmGame extends Game implements ApplicationListener {
 		stage = new Stage((float) SCREEN_WIDTH, (float) SCREEN_HEIGHT, false);
 		
 		screenStack.add(new GameScreen(this));
+		
+		Gdx.input.setInputProcessor(stage);
 	}
 
 	@Override
