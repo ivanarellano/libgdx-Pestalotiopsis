@@ -66,11 +66,11 @@ public class GameOverUI extends Group {
 		addActor(scoreNumber);
 		addActor(scoreText);
 		
-		gameScreen.game.stage.addActor(this);
+		gameScreen.game.groupMidGameScreen.addActor(this);
 	}
 	
 	public void removeUI() {		
-		gameScreen.game.stage.removeActor(this);
+		gameScreen.game.groupMidGameScreen.removeActor(this);
 	}
 	
 }

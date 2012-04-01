@@ -159,9 +159,6 @@ public class GameScreen extends PmScreen {
 	}
 
 	void initBoardGraphics() {
-		// add some grass
-		groupBoard.addActor(grassBoard);
-
 		// place board in the middle
 		groupBoard.x = PmGame.SCREEN_WIDTH / 2 - grassBoard.width / 2;
 		groupBoard.y = PmGame.SCREEN_HEIGHT / 2 - grassBoard.height / 2;
@@ -187,12 +184,28 @@ public class GameScreen extends PmScreen {
 
 			YOffset -= 215;
 		}
+		
+		groupMoves.width = 82;
+		groupMoves.x = PmGame.SCREEN_WIDTH - groupMoves.width - 16;
+		groupMoves.y = 20;
+		
+		movesNumber.x = groupMoves.width/2 - movesNumber.getTextBounds().width/2 + 3;
+		movesNumber.y = -70;
+		
+		movesText.x = 6;
+		
+		// add some grass
+		groupBoard.addActor(grassBoard);
 
 		// layer tiles on top of grass
 		groupBoard.addActor(groupTiles);
 
-		// place it all on the stage
-		game.stage.addActor(groupBoard);
+		// place board on the mid stage layer
+		game.groupMidGameScreen.addActor(groupBoard);
+		
+		groupMoves.addActor(movesNumber);
+		groupMoves.addActor(movesText);
+		game.groupTopGameScreen.addActor(groupMoves);
 	}
 	
 	public void resetBoard() {
