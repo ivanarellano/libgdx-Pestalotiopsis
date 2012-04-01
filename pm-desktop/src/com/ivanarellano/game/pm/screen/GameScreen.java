@@ -8,8 +8,10 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.OnActionCompleted;
 import com.badlogic.gdx.scenes.scene2d.actions.MoveBy;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.ivanarellano.game.pm.Assets;
 import com.ivanarellano.game.pm.Assets.Colors;
+import com.ivanarellano.game.pm.Assets.LabelStyles;
 import com.ivanarellano.game.pm.Board;
 import com.ivanarellano.game.pm.Direction;
 import com.ivanarellano.game.pm.GameOverUI;
@@ -26,7 +28,12 @@ public class GameScreen extends PmScreen {
 	
 	Group groupBoard = new Group("board");
 	Group groupTiles = new Group("tiles");
+	Group groupMoves = new Group("groupmoves");
+	
 	Image grassBoard = new Image(Assets.atlas.findRegion("grassboard"));
+	Image movesText = new Image(Assets.atlas.findRegion("moves"));
+	Label movesNumber = new Label("0", LabelStyles.MOVES_COUNTER);
+	
 	GameOverUI gameOverUI = new GameOverUI(this);
 	
 	int totalMoves = 0;
@@ -56,7 +63,7 @@ public class GameScreen extends PmScreen {
 								public void completed(Action action) {
 									state = GameState.READY;
 									board.slideTile(Direction.LEFT);
-									totalMoves++;
+									updateMovesCounter();
 								}
 							});
 					
@@ -72,7 +79,7 @@ public class GameScreen extends PmScreen {
 								public void completed(Action action) {
 									state = GameState.READY;
 									board.slideTile(Direction.RIGHT);
-									totalMoves++;
+									updateMovesCounter();
 								}
 							});
 
@@ -89,7 +96,7 @@ public class GameScreen extends PmScreen {
 								public void completed(Action action) {
 									state = GameState.READY;
 									board.slideTile(Direction.DOWN);
-									totalMoves++;
+									updateMovesCounter();
 								}
 							});
 					
@@ -106,7 +113,7 @@ public class GameScreen extends PmScreen {
 								public void completed(Action action) {
 									state = GameState.READY;
 									board.slideTile(Direction.UP);
-									totalMoves++;
+									updateMovesCounter();
 								}
 							});
 					
@@ -209,10 +216,17 @@ public class GameScreen extends PmScreen {
 	}
 	
 	public void resetBoard() {
+		totalMoves = 0;
+		movesNumber.setText(Integer.toString(totalMoves));
 		board.reset();
 		groupTiles.clear();
 		groupBoard.clear();
 		initBoardGraphics();
 	}
 
+	public void updateMovesCounter() {
+		totalMoves++;
+		movesNumber.setText(Integer.toString(totalMoves));
+		movesNumber.x = groupMoves.width/2 - movesNumber.getTextBounds().width/2 + 3;
+	}
 }
