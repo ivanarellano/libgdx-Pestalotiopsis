@@ -21,6 +21,8 @@ public class PmGame extends Game implements ApplicationListener {
 		Gdx.app.log("libGdx ver", Integer.toString(Gdx.app.getVersion()));
 		
 		Gdx.graphics.setVSync(true);
+		Gdx.graphics.setContinuousRendering(true);
+		
 		Gdx.input.setCatchBackKey(true);
 		
 		Assets.create();

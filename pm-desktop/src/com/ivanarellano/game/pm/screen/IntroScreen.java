@@ -37,14 +37,14 @@ public class IntroScreen extends PmScreen {
 					game.screenStack.add(new GameScreen(game));
 				}
 				else {
-					actor.x = PmGame.SCREEN_WIDTH/2 - 60;
+					actor.x = PmGame.SCREEN_WIDTH/2 - mushroom.width - 65;
 					actor.y = PmGame.SCREEN_HEIGHT/2 - 146;
 				}
 
 			}
 		};
 		
-		mushroom = new Image(Assets.atlas.findRegion("mushroom"), Scaling.stretch, Align.CENTER, "mushroom") {
+		mushroom = new Image(Assets.atlas.findRegion("mushroom"), Scaling.stretch, Align.LEFT, "mushroom") {
 			
 			@Override
 			public void touchDragged(float x, float y, int pointer) {
@@ -61,14 +61,14 @@ public class IntroScreen extends PmScreen {
 					game.groupMidGameScreen.clear();
 					game.screenStack.add(new GameScreen(game));
 				} else {
-					actor.x = PmGame.SCREEN_WIDTH/2 + 111;
+					actor.x = PmGame.SCREEN_WIDTH/2 + milkJug.width + 34;
 					actor.y = PmGame.SCREEN_HEIGHT/2 - 146;
 				}
 
 			}
 		};
 		
-		milkJug = new Image(Assets.atlas.findRegion("milkjug"), Scaling.stretch, Align.CENTER, "milkjug") {
+		milkJug = new Image(Assets.atlas.findRegion("milkjug"), Scaling.stretch, Align.LEFT, "milkjug") {
 			@Override
 			public void touchDragged(float x, float y, int pointer) {
 				this.x += x - this.width/2;
@@ -78,16 +78,16 @@ public class IntroScreen extends PmScreen {
 		
 		mushroom.touchable = true;
 		mushroom.setClickListener(mushroomOnHit);
-		mushroom.x = PmGame.SCREEN_WIDTH/2 - 60;
+		mushroom.x = PmGame.SCREEN_WIDTH/2 - mushroom.width - 65;
 		mushroom.y = PmGame.SCREEN_HEIGHT/2 - 146;
-		smallGrass.x = PmGame.SCREEN_WIDTH/2 - 85;
+		smallGrass.x = PmGame.SCREEN_WIDTH/2 - smallGrass.width - 35;
 		smallGrass.y = PmGame.SCREEN_HEIGHT/2 - 169;
 		
 		milkJug.touchable = true;
 		milkJug.setClickListener(milkJugOnHit);
-		milkJug.x = PmGame.SCREEN_WIDTH/2 + 111;
+		milkJug.x = PmGame.SCREEN_WIDTH/2 + milkJug.width + 34;
 		milkJug.y = PmGame.SCREEN_HEIGHT/2 - 146;
-		smallDeadGrass.x = PmGame.SCREEN_WIDTH/2 + 85;
+		smallDeadGrass.x = PmGame.SCREEN_WIDTH/2 + smallDeadGrass.width/2;
 		smallDeadGrass.y = PmGame.SCREEN_HEIGHT/2 - 169;
 		
 		groupIntroScreen.addActor(logo);
