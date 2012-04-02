@@ -128,6 +128,9 @@ public class GameScreen extends PmScreen {
 				gameOverUI.init();
 			}
 			
+		} else if (state == GameState.ACTING) {
+			// draw a new frame under non-continuous rendering
+			Gdx.graphics.requestRendering();
 		}
 
 	}
