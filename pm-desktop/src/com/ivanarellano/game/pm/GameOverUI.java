@@ -58,7 +58,9 @@ public class GameOverUI extends Group {
 		tintOverlay.scaleY = 3.0f;
 	}
 	
-	public void init() {		
+	public void init() {
+		updateScore();
+		
 		addActor(tintOverlay);
 		addActor(logo);
 		addActor(newGame);
@@ -73,4 +75,8 @@ public class GameOverUI extends Group {
 		gameScreen.game.groupMidGameScreen.removeActor(this);
 	}
 	
+	public void updateScore() {
+		int score = gameScreen.optimumMoves - gameScreen.totalMoves;
+		scoreNumber.setText(Integer.toString(score));
+	}
 }

@@ -36,7 +36,8 @@ public class GameScreen extends PmScreen {
 	
 	GameOverUI gameOverUI = new GameOverUI(this);
 	
-	int totalMoves = 0;
+	public int totalMoves = 0;
+	public int optimumMoves = 14;
 
 	public GameScreen(PmGame game) {
 		super(game);
