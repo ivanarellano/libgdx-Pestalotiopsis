@@ -5,7 +5,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.ivanarellano.game.pm.screen.GameScreen;
+import com.ivanarellano.game.pm.screen.IntroScreen;
 
 public class PmGame extends Game implements ApplicationListener {
 	public static final int SCREEN_WIDTH = 1196; //1280
@@ -32,7 +32,7 @@ public class PmGame extends Game implements ApplicationListener {
 		stage.addActor(groupMidGameScreen);
 		stage.addActor(groupTopGameScreen);
 		
-		screenStack.add(new GameScreen(this));
+		screenStack.add(new IntroScreen(this));
 		
 		Gdx.input.setInputProcessor(stage);
 	}
